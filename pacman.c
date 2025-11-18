@@ -1,5 +1,8 @@
 #include <stdio.h>
+#include "ecran.h"
+#include <SDL2/SDL.h>
 
 int main(){
-    printf("Hello World")
+    printf("Hello World");
+    window();
 }
