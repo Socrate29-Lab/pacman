@@ -14,4 +14,5 @@ int window(){
         SDL_Quit();
         return 1;
     }
+    return window;
 }

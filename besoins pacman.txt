@@ -18,7 +18,7 @@ Quand je lance ma partie de pacman :
 A développer :
 Affichage d'un écran.
 Affichage des murs
-Affichage d'un carré coloré qui représente PacMan.
+Affichage d'un personnage qui représente PacMan.
 Affichage des billes à gober et des MEGAbilles.
 Affichage des cerises.
 Affichage des PV de PacMan
