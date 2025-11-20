@@ -14,13 +14,4 @@ int window(){
         SDL_Quit();
         return 1;
     }
-    // Creation du renderer
-    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-    if (!renderer) {
-        printf("Erreur creation renderer : %s\n", SDL_GetError());
-        SDL_DestroyWindow(window);
-        SDL_Quit();
-        return 1;
-    }
-    SDL_Delay(3000);
 }
