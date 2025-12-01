@@ -16,9 +16,21 @@ Quand je lance ma partie de pacman :
 	
 	
 A développer :
-Affichage d'un écran.
-Affichage des murs
-Affichage d'un personnage qui représente PacMan.
-Affichage des billes à gober et des MEGAbilles.
-Affichage des cerises.
-Affichage des PV de PacMan
+LOGIQUE :
+- Créer un tableau qui correspond à la map --> 19*20
+- Définir les objets qui sont sur la map : Structure avec numero, nom, points
+- Définir le départ du personnage sur la grille
+- 
+
+
+AFFICHAGE :
+- Affichage d'un écran.
+- Affichage de la map
+- Affichage d'un personnage qui représente PacMan.
+- Affichage des billes à gober et des MEGAbilles.
+- Affichage des cerises.
+- Affichage des PV de PacMan
+- Affichage des fantomes
+
+
+

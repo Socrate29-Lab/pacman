@@ -3,6 +3,7 @@
 #include <SDL2/SDL_image.h>
 #include "ecran.h"
 #include "nettoyage.h"
+#include "perso.h"
 
 
 int main(){
@@ -14,6 +15,7 @@ int main(){
     //Initialisation de l'ecran
     window();
     //affichage du perso a l'ecran
+    perso();
     //Met fin a l'ecran au bout de 3 secondes (pour faire les tests)
     SDL_Delay(3000);
     terminate();
