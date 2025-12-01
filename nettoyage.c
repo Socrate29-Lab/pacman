@@ -1,7 +1,7 @@
+#include "nettoyage.h"
 #include <stdio.h>
 #include <SDL2/SDL.h>
 
-// Nettoyage
 void terminate(){
     SDL_DestroyWindow(window);
     SDL_Quit();
