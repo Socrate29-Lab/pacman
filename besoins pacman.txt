@@ -17,7 +17,7 @@ Quand je lance ma partie de pacman :
 	
 A développer :
 LOGIQUE :
-- Créer un tableau qui correspond à la map --> 19*20
+- Créer un tableau qui correspond à la map --> 28*31
 - Définir les objets qui sont sur la map : Structure avec numero, nom, points
 - Définir le départ du personnage sur la grille
 - 

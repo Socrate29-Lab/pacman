@@ -1,3 +1,6 @@
+#ifndef GRILLE_H
+#define GRILLE_H
+
 //0=mur, 1= case vide, 2= case avec bonbon, 3= case avec superbonbon, 4=Fruit
 //5= Pacman, 6= fantome 1, 7= fantome 2, 8= fantome 3, 9= fantome 4
 //tunnel1 =10, tunnel2 =11, porte =12
@@ -85,3 +88,5 @@
 //        }
 //    printf("\n");
 //    }
+
+#endif

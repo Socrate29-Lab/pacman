@@ -3,7 +3,7 @@
 #include <SDL2/SDL.h>
 
 void window(){
-    SDL_Window* window = SDL_CreateWindow(
+    SDL_Window* helloscreen = SDL_CreateWindow(
         "PacMan",
         SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
         1280, 1024,
