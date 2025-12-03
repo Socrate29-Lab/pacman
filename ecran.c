@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include "ecran.h"
+#include "perso.h"
+#include "map.h"
 #include <SDL2/SDL.h>
 
 void window(){
@@ -25,7 +27,9 @@ void window(){
                 running = 0;
             }
         }
+    generate_map();
+    SDL_Delay(1000);
     }
-    //Nettoyage de l'appli
+    //Nettoyage de l'ecran
     SDL_DestroyWindow(screen);
 }

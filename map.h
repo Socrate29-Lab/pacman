@@ -2,5 +2,5 @@
 #define MAP_H
 
 
-void generate_map();
+int generate_map();
 #endif
