@@ -17,7 +17,8 @@ void window(){
         SDL_Quit();
     }
     SDL_Surface *screen_surface = SDL_GetWindowSurface(screen);
-        //Initialisation du jeu
+    
+    //Initialisation du jeu
     int running = 1;
     SDL_Event event;
     while(running){
