@@ -14,8 +14,8 @@ void perso(){
     }
 
     //Affichage du personnage PacMan
-    int x = 300;
-    int y = 300;
+    int x = 50;
+    int y = 50;
     SDL_Rect perso = {x,y, 50,50};
     SDL_Surface* pacman = IMG_Load("pacman.bmp");
     if(!pacman)

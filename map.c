@@ -48,7 +48,5 @@ int generate_map(){
                     break;
             }
         }
-    printf("\n");
     }
-    printf("\n");
 }

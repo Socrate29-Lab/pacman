@@ -3,18 +3,20 @@
 #include "perso.h"
 #include "map.h"
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 
 void window(){
     SDL_Window* screen = SDL_CreateWindow(
         "PacMan",
         SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-        1280, 1024,
+        728, 852,
         0
     );
-    if (!window) {
+    if (!screen) {
         printf("Erreur creation fenetre : %s\n", SDL_GetError());
         SDL_Quit();
     }
+    SDL_Surface *screen_surface = SDL_GetWindowSurface(screen);
         //Initialisation du jeu
     int running = 1;
     SDL_Event event;
@@ -27,8 +29,14 @@ void window(){
                 running = 0;
             }
         }
-    generate_map();
-    SDL_Delay(1000);
+        //Initialisation de la map en background
+        SDL_Surface *background = SDL_LoadBMP("pacmap.bmp");
+        if (!background){
+            printf("Erreur chargement background");
+            SDL_Quit();
+        }
+        SDL_BlitSurface(background, NULL, screen_surface , NULL);
+        SDL_UpdateWindowSurface(screen);
     }
     //Nettoyage de l'ecran
     SDL_DestroyWindow(screen);
