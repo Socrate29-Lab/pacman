@@ -1,13 +1,14 @@
 #ifndef GRILLE_H
 #define GRILLE_H
 
+//Index des personnages/objets
 //0=mur, 1= case vide, 2= case avec bonbon, 3= case avec pac-gomme, 4=Fruit
 //5= Pacman, 6= fantome 1, 7= fantome 2, 8= fantome 3, 9= fantome 4
 //tunnel1 =10, tunnel2 =11, porte =12
 
 //int main(){$
 
-    int grille[31][28]={
+int grille[31][28]={
     {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},   //0
     {0,2,2,2,2,2,2,2,2,2,2,2,2,0,0,2,2,2,2,2,2,2,2,2,2,2,2,0},   //1
     {0,2,0,0,0,0,2,0,0,0,0,0,2,0,0,2,0,0,0,0,0,2,0,0,0,0,2,0},   //2

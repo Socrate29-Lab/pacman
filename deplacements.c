@@ -1,6 +1,6 @@
 #include "deplacements.h"
 #include "grille.h"
-#include "assets.h"
+#include "objets.h"
 #include <stdio.h>
 #include <SDL2/SDL.h>
 
