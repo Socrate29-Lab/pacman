@@ -1,10 +1,12 @@
 #include "deplacements.h"
 #include "grille.h"
+#include "assets.h"
 #include <stdio.h>
 #include <SDL2/SDL.h>
-#include "perso.h"
 
-void deplacements(SDL_Event event){
+
+
+void deplacement_Pacman(SDL_Event event){
     //initialisation des touches de deplacement
     if(event.type == SDL_KEYDOWN){
         if(event.key.keysym.sym == SDLK_q || SDLK_LEFT){
