@@ -4,9 +4,8 @@
 #include <SDL2/SDL.h>
 #include "perso.h"
 
-void deplacements(){
+void deplacements(SDL_Event event){
     //initialisation des touches de deplacement
-    SDL_Event event;
     if(event.type == SDL_KEYDOWN){
         if(event.key.keysym.sym == SDLK_q || SDLK_LEFT){
             if(playerX-50>0) playerX = playerX-50;

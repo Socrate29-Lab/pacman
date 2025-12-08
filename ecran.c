@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "ecran.h"
-#include "perso.h"
 #include "map.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -38,6 +37,8 @@ void window(){
         }
         SDL_BlitSurface(background, NULL, screen_surface , NULL);
         SDL_UpdateWindowSurface(screen);
+        generate_map();
+        SDL_Delay(1000);
     }
     //Nettoyage de l'ecran
     SDL_DestroyWindow(screen);

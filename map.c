@@ -1,10 +1,13 @@
 #include <stdio.h>
 #include "grille.h"
+
+
+
 int generate_map(){
-    extern int const GRILLE[31][28];
+    extern int grille[31][28];
         for(int i=0; i<31; i++){
         for(int j=0; j<28; j++){
-            switch(GRILLE[i][j]){
+            switch(grille[i][j]){
                 case 0:
                     printf("-");
                     break;
@@ -47,6 +50,6 @@ int generate_map(){
                 default :
                     break;
             }
-        }
-    }
+        }printf("\n");
+    }printf("\n");
 }
