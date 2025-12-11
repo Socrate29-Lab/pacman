@@ -3,6 +3,7 @@
 #include "objets.h"
 #include "map.h"
 #include "ecran.h"
+#include "assets.h"
 
 void generate_tile(int x, int y, int a){
     switch(a){
@@ -13,7 +14,7 @@ void generate_tile(int x, int y, int a){
            
             break;
         case 2: 
-            print_candy(x,y);
+            print_candy(x,y,renderer);
             break;
         case 3:
             printf("o");

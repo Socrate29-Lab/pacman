@@ -3,6 +3,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
-void generate_tile(int x, int y, int a);
+void print_empty();
+void print_candy(int x, int y, SDL_Renderer *renderer);
 
 #endif

@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "grille.h"
 #include "assets.h"
+#include "ecran.h"
+#include "tile_generation.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 

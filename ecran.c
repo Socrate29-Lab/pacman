@@ -4,40 +4,37 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
-void window(){
-    SDL_Window* screen = SDL_CreateWindow(
-        "PacMan",
-        SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-        728, 852,
-        0
-    );
-    if (!screen) {
-        printf("Erreur creation fenetre : %s\n", SDL_GetError());
+//Déclaration de l'écran
+SDL_Window *screen = NULL;
+SDL_Renderer *renderer = NULL;
+SDL_Surface *screen_surface;
+
+//Initialisation de l'écran
+int init_ecran(const char *titre, int largeur, int hauteur){
+    if (SDL_Init(SDL_INIT_VIDEO) != 0) return 0;
+        screen = SDL_CreateWindow(
+            "Pacman",
+            SDL_WINDOWPOS_CENTERED,
+            SDL_WINDOWPOS_CENTERED,
+            728, 852,
+            0
+            );
+    if (!screen) return 0;
+
+    screen_surface = SDL_GetWindowSurface(screen);
+
+    //Creation du renderer
+    renderer = SDL_CreateRenderer(screen, -1, SDL_RENDERER_ACCELERATED);
+    if (!renderer) {
+        printf("Erreur création renderer : %s\n", SDL_GetError());
+        SDL_DestroyWindow(screen);
         SDL_Quit();
-    }
-    SDL_Surface *screen_surface = SDL_GetWindowSurface(screen);
-    
-    //Initialisation du jeu
-    int running = 1;
-    SDL_Event event;
-    while(running){
-        while(SDL_PollEvent(&event)){
-            if (event.type == SDL_QUIT)
-                running = 0;
-            if (event.type == SDL_KEYDOWN){
-                if(event.key.keysym.sym == SDLK_ESCAPE)
-                running = 0;
-            }
-        }
-        //Initialisation de la map en background
-        SDL_Surface *background = SDL_LoadBMP("pacmap.bmp");
-        if (!background){
-            printf("Erreur chargement background");
-            SDL_Quit();
-        }
-        SDL_BlitSurface(background, NULL, screen_surface , NULL);
-        SDL_UpdateWindowSurface(screen);
-    }
-    //Nettoyage de l'ecran
+    } 
+}
+
+//Nettoyage de l'ecran
+void detruire_ecran(){
+    SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(screen);
+    SDL_Quit();
 }
