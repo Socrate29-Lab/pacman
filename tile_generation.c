@@ -5,6 +5,7 @@
 #include "ecran.h"
 #include "assets.h"
 
+//Fonction pour attribuer des tuiles vides/objet sur la map en association avec le chiffre référence de grille.h
 void generate_tile(int x, int y, int a){
     switch(a){
         case 0:
@@ -14,12 +15,12 @@ void generate_tile(int x, int y, int a){
            
             break;
         case 2: 
-            print_candy(x,y,renderer);
+            print_candy(y,x,renderer);
             break;
         case 3:
-            printf("o");
+            print_pacgum(y,x,renderer);
             break;
-        case 4:
+        /*case 4:
             printf("F");
             break;
         case 5:
@@ -47,6 +48,6 @@ void generate_tile(int x, int y, int a){
             printf("_");
             break;
         default :
-            break;
+            break;*/
     }
 }

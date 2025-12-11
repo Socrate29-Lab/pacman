@@ -18,6 +18,7 @@ void jouer(){
             }
         }
         //Affichage du labyrinthe en background
+        screen_surface = SDL_GetWindowSurface(screen);
         SDL_Surface *background = SDL_LoadBMP("pacmap.bmp");
         if (!background){
             printf("Erreur chargement background");
@@ -28,5 +29,7 @@ void jouer(){
 
         //Affichage des objets sur la map
         generate_map();
+        SDL_RenderPresent(renderer);
+        SDL_Delay(1000);
     }
 }

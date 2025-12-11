@@ -7,7 +7,7 @@
 //Déclaration de l'écran
 SDL_Window *screen = NULL;
 SDL_Renderer *renderer = NULL;
-SDL_Surface *screen_surface;
+SDL_Surface *screen_surface = NULL;
 
 //Initialisation de l'écran
 int init_ecran(const char *titre, int largeur, int hauteur){
@@ -20,8 +20,6 @@ int init_ecran(const char *titre, int largeur, int hauteur){
             0
             );
     if (!screen) return 0;
-
-    screen_surface = SDL_GetWindowSurface(screen);
 
     //Creation du renderer
     renderer = SDL_CreateRenderer(screen, -1, SDL_RENDERER_ACCELERATED);
