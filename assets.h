@@ -7,5 +7,8 @@ void print_empty();
 void print_candy(int x, int y, SDL_Renderer *renderer);
 void print_pacgum(int x, int y, SDL_Renderer *renderer);
 void print_pacman(int x, int y, SDL_Renderer *renderer);
+void print_ghost1(int x, int y, SDL_Renderer *renderer);
+void print_ghost2(int x, int y, SDL_Renderer *renderer);
+void print_ghost3(int x, int y, SDL_Renderer *renderer);
 
 #endif
