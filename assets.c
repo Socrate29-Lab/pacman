@@ -11,7 +11,7 @@ void print_empty(int x, int y){
 
 //Fonction pour afficher les bonbons sur les bonnes cases du labyrinthe
 void print_candy(int x, int y, SDL_Renderer *renderer){
-    SDL_Rect candy={27*x,27*y,27, 27};
+    SDL_Rect candy={26*x,28*y,27, 27};
     SDL_Surface *candySprite = SDL_LoadBMP("candy.bmp");
     if(!candySprite) printf("Erreur chargement candy.bmp");
     SDL_Texture *candyTexture = SDL_CreateTextureFromSurface(renderer, candySprite);
@@ -22,11 +22,22 @@ void print_candy(int x, int y, SDL_Renderer *renderer){
 
 //Fonction pour afficher les pac-gum sur les bonnes cases du labyrinthe
 void print_pacgum(int x, int y, SDL_Renderer* renderer){
-    SDL_Rect pac_gum={27*x,27*y,27, 27};
+    SDL_Rect pac_gum={26*x,28*y,27, 27};
     SDL_Surface *pac_gumSprite = SDL_LoadBMP("pac_gum.bmp");
     if(!pac_gumSprite) printf("Erreur chargement pacgum.bmp");
     SDL_Texture *pac_gumTexture = SDL_CreateTextureFromSurface(renderer, pac_gumSprite);
     SDL_FreeSurface(pac_gumSprite);
     if(!pac_gumTexture) printf("Erreur texture");
     SDL_RenderCopy(renderer, pac_gumTexture, NULL, &pac_gum);
+}
+
+//Fonction pour afficher Pac-man
+void print_pacman(int x, int y, SDL_Renderer* renderer){
+    SDL_Rect pacman={26*x,28*y,27, 27};
+    SDL_Surface *pacmanSprite = SDL_LoadBMP("pacman.bmp");
+    if(!pacmanSprite) printf("Erreur chargement pacman.bmp");
+    SDL_Texture *pacmanTexture = SDL_CreateTextureFromSurface(renderer, pacmanSprite);
+    SDL_FreeSurface(pacmanSprite);
+    if(!pacmanTexture) printf("Erreur texture");
+    SDL_RenderCopy(renderer, pacmanTexture, NULL, &pacman);
 }

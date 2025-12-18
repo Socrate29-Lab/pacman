@@ -17,15 +17,14 @@ void jouer(){
                 running = 0;
             }
         }
-        //Affichage du labyrinthe en background
-        screen_surface = SDL_GetWindowSurface(screen);
-        SDL_Surface *background = SDL_LoadBMP("pacmap.bmp");
-        if (!background){
-            printf("Erreur chargement background");
-            SDL_Quit();
-        }
-        SDL_BlitSurface(background, NULL, screen_surface , NULL);
-        SDL_UpdateWindowSurface(screen);
+        //Affichage du labyrinthe en labyrinth
+        SDL_Rect labyrinth={0,0,728,852};
+        SDL_Surface *labyrinth_surface = SDL_LoadBMP("pacmap.bmp");
+        if (!labyrinth_surface) printf("Erreur chargement labyrinth");
+        SDL_Texture *labyrinth_texture = SDL_CreateTextureFromSurface(renderer, labyrinth_surface);
+        SDL_FreeSurface(labyrinth_surface);
+        if(!labyrinth_texture) printf("Erreur texture");
+        SDL_RenderCopy(renderer, labyrinth_texture, NULL, &labyrinth);
 
         //Affichage des objets sur la map
         generate_map();

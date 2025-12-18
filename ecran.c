@@ -7,7 +7,6 @@
 //Déclaration de l'écran
 SDL_Window *screen = NULL;
 SDL_Renderer *renderer = NULL;
-SDL_Surface *screen_surface = NULL;
 
 //Initialisation de l'écran
 int init_ecran(const char *titre, int largeur, int hauteur){

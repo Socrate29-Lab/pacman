@@ -22,11 +22,11 @@ void generate_tile(int x, int y, int a){
             break;
         /*case 4:
             printf("F");
-            break;
+            break;*/
         case 5:
-            printf("P");
+            print_pacman(y,x,renderer);
             break;
-        case 6:
+        /*case 6:
             printf("G");
             break;
         case 7:
