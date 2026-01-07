@@ -2,6 +2,6 @@
 #define DEPLACEMENTS_H
 
 void deplacement_Fantome();
-void deplacement_Pacman(SDL_Event event);
+int deplacement_Pacman();
 
 #endif

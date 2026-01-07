@@ -3,14 +3,17 @@
 #include "ecran.h"
 #include "map.h"
 #include "deplacements.h"
-#include "assets.h"
+#include "grille.h"
 
 
 //Initialisation du jeu
 void jouer(){
+    //Données pour permettre au programme de savoir quelle étape il doit faire
     int running = 1;
     SDL_Event event;
+    int map_init=0;
 
+    //Conditions pour quitter la fenêtre de jeu
     while(running){
         while(SDL_PollEvent(&event)){
             if (event.type == SDL_QUIT)
@@ -21,7 +24,8 @@ void jouer(){
             }
         }
     }
-    //Affichage du labyrinthe en labyrinth
+
+    //Affichage du labyrinthe
     SDL_Rect labyrinth={0,0,728,852};
     SDL_Surface *labyrinth_surface = SDL_LoadBMP("pacmap.bmp");
     if (!labyrinth_surface) printf("Erreur chargement labyrinth");
@@ -31,7 +35,13 @@ void jouer(){
     SDL_RenderCopy(renderer, labyrinth_texture, NULL, &labyrinth);
 
     //Affichage des objets sur la map
-    generate_map();
-    SDL_RenderPresent(renderer);
-    deplacement_Pacman(event);
+   if (map_init == 0){
+        generate_map();
+        map_init = 1;
+        SDL_RenderPresent(renderer);
+    }else{
+        deplacement_Pacman();
+        update_map();
+        SDL_RenderPresent(renderer);
+    }
 }

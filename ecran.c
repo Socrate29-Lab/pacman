@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "ecran.h"
-#include "map.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
