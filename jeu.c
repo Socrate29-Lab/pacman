@@ -12,7 +12,7 @@ void jouer(){
     int running = 1;
     SDL_Event event;
     int map_init=0;
-    int last_pressed_key;
+    int last_key=0;
 
     //Conditions pour quitter la fenêtre de jeu
     while(running){
@@ -24,10 +24,10 @@ void jouer(){
                 running = 0;
             }
             //Check des boutons de direction -> "zqsd" du pavé numérique donc "8456"
-            if(event.type ==SDL_KEYDOWN && event.key.keysym.sym == (SDLK_z||SDLK_UP))last_pressed_key=8;
-            if(event.type ==SDL_KEYDOWN && event.key.keysym.sym == (SDLK_q||SDLK_LEFT))last_pressed_key=4;
-            if(event.type ==SDL_KEYDOWN && event.key.keysym.sym == (SDLK_s||SDLK_DOWN))last_pressed_key=5;
-            if(event.type ==SDL_KEYDOWN && event.key.keysym.sym == (SDLK_d||SDLK_RIGHT))last_pressed_key=6;
+            if(event.type ==SDL_KEYDOWN && event.key.keysym.sym == (SDLK_z||SDLK_UP))last_key=8;
+            if(event.type ==SDL_KEYDOWN && event.key.keysym.sym == (SDLK_q||SDLK_LEFT))last_key=4;
+            if(event.type ==SDL_KEYDOWN && event.key.keysym.sym == (SDLK_s||SDLK_DOWN))last_key=5;
+            if(event.type ==SDL_KEYDOWN && event.key.keysym.sym == (SDLK_d||SDLK_RIGHT))last_key=6;
         }
         //Affichage du labyrinthe
         SDL_Rect labyrinth={0,0,728,852};
@@ -42,11 +42,10 @@ void jouer(){
         if (map_init == 0){
             generate_map();
             map_init = 1;
-        }else{
-            move_Pacman(last_pressed_key);
-            update_map();
         }
+        move_Pacman(last_key);
+        update_map();
         SDL_RenderPresent(renderer);
-        SDL_Delay(100);
+        SDL_Delay(1000);
     }
 }

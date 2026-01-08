@@ -12,8 +12,8 @@ void move_Pacman(int last_key){;
     int posPacmanY=14;
     int posPacmanX=1;
     //boucle pour check
-    for(int i=0; i<31; i++){
-        for(int j=0; j<28; j++){
+//    for(int i=0; i<31; i++){
+//        for(int j=0; j<28; j++){
             switch(last_key){
                 case 8: //Deplacement vers le haut
                     if((grille_deplacement[posPacmanY]-1)!=0){
@@ -47,7 +47,9 @@ void move_Pacman(int last_key){;
                         printf("droite");
                     }
                     break;
-            }
-        }
+                default:
+                    break;
+//            }
+//        }
     }
 }
