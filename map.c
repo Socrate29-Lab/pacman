@@ -15,12 +15,13 @@ int generate_map(){
     }
 }
 
+//Fonction pour afficher les assets de la map une fois qu'on a modifié la grille de départ.
 int update_map(){
     grille_deplacement[31][28];
         for(int i=0; i<31; i++){
-        for(int j=0; j<28; j++){
-            int index = grille_deplacement[i][j];
-            generate_tile(i, j, index);
+            for(int j=0; j<28; j++){
+                int index = grille_deplacement[i][j];
+                generate_tile(i, j, index);
+            }
         }
-    }
 }

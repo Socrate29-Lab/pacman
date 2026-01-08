@@ -4,38 +4,50 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 
-int deplacement_Pacman(){;
-    int posPacmanX=1;
+//grille menée à être modifiée par les déplacements de pac-man et des fantômes
+//grille_deplacement[31][28];
+
+void move_Pacman(int last_key){;
+    //Données nécessaires au déplacement
     int posPacmanY=14;
-    SDL_Event event;
-    grille_deplacement[31][28];
+    int posPacmanX=1;
+    //boucle pour check
     for(int i=0; i<31; i++){
         for(int j=0; j<28; j++){
-            while(SDL_PollEvent(&event)){
-                if(event.type == SDL_KEYDOWN){
-                    if(event.key.keysym.sym == SDLK_q || SDLK_LEFT){
-                        while((grille_deplacement[posPacmanX-1][posPacmanY])!=0){
-                            grille_deplacement[posPacmanX][posPacmanY]=1;
-                            posPacmanX--;
-                        }
-                    }else if(event.key.keysym.sym == SDLK_d || SDLK_RIGHT){
-                        while(grille_deplacement[posPacmanX+1][posPacmanY]!=0){
-                            grille_deplacement[posPacmanX][posPacmanY]=1;
-                            posPacmanX++;
-                            }
-                    }else if(event.key.keysym.sym == SDLK_z || SDLK_UP){
-                        while(grille_deplacement[posPacmanX][posPacmanY-1]!=0){ 
-                            grille_deplacement[posPacmanX][posPacmanY]=1;
-                            posPacmanY--;
-                        }
-                    }else if (event.key.keysym.sym == SDLK_s || SDLK_DOWN){
-                        while(grille_deplacement[posPacmanX][posPacmanY+1]!=0){
-                            grille_deplacement[posPacmanX][posPacmanY]=1;
-                            posPacmanY++;
-                        }
+            switch(last_key){
+                case 8: //Deplacement vers le haut
+                    if((grille_deplacement[posPacmanY]-1)!=0){
+                        grille_deplacement[posPacmanY][posPacmanX]=1;
+                        posPacmanY--;
+                        grille_deplacement[posPacmanY][posPacmanX]=5;
+                        printf("haut");
                     }
-                }
+                    break;
+                case 4: //Deplacement vers la gauche
+                    if((grille_deplacement[posPacmanX]-1)!=0){
+                        grille_deplacement[posPacmanY][posPacmanX]=1;
+                        posPacmanX--;
+                        grille_deplacement[posPacmanY][posPacmanX]=5;
+                        printf("gauche");
+                    }
+                    break;
+                case 5: //Deplacement vers le bas
+                    if((grille_deplacement[posPacmanY]+1)!=0){
+                        grille_deplacement[posPacmanY][posPacmanX]=1;
+                        posPacmanY++;
+                        grille_deplacement[posPacmanY][posPacmanX]=5;
+                        printf("bas");
+                    }
+                    break;
+                case 6: //Deplacement vers la droite
+                    if((grille_deplacement[posPacmanX]+1)!=0){
+                        grille_deplacement[posPacmanY][posPacmanX]=1;
+                        posPacmanX++;
+                        grille_deplacement[posPacmanY][posPacmanX]=5;
+                        printf("droite");
+                    }
+                    break;
             }
         }
     }
-}    
+}

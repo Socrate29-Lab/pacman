@@ -1,7 +1,7 @@
 #ifndef DEPLACEMENTS_H
 #define DEPLACEMENTS_H
 
-void deplacement_Fantome();
-int deplacement_Pacman();
+void move_Ghosts();
+void move_Pacman();
 
 #endif
