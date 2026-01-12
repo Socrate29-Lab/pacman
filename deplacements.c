@@ -16,7 +16,7 @@ void move_Pacman(int last_key,int *posY, int *posX){;
             //vérification d'un tunnel
             if(grille_deplacement[*posY][*posX - 1]==10){
                     grille_deplacement[*posY][*posX]=1;
-                    (*posX) +=27;
+                    (*posX)=26;
             }else{
                 //déplacement normal
                 if(grille_deplacement[*posY][*posX - 1]!=0 && grille_deplacement[*posY][*posX - 1]!=12){
@@ -34,7 +34,7 @@ void move_Pacman(int last_key,int *posY, int *posX){;
         case 6: //Deplacement vers la droite
             if(grille_deplacement[*posY][*posX + 1]==11){
                     grille_deplacement[*posY][*posX]=1;
-                    (*posX) -= 27;
+                    (*posX)=1;
             }else{
                 if(grille_deplacement[*posY][*posX + 1]!=0 && grille_deplacement[*posY][*posX + 1]!=12){
                 grille_deplacement[*posY][*posX]=1;

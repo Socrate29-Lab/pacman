@@ -13,9 +13,14 @@ void jouer(){
     SDL_Event event;
     int map_init=0;
     int last_key=0;
+
     //Données nécessaires au déplacement
     int posPacmanY=14;
     int posPacmanX=1;
+
+    //Initialisation de deux timers pour les déplacements de Pacman et des fantômes
+    Uint32 lastMovePacman = 0;
+    Uint32 lastMoveGhosts = 0;
 
     //Affichage du labyrinthe
     SDL_Rect labyrinth={0,0,728,852};
@@ -40,6 +45,9 @@ void jouer(){
             if(event.type ==SDL_KEYDOWN && (event.key.keysym.sym == SDLK_s || event.key.keysym.sym == SDLK_DOWN))last_key=5;
             if(event.type ==SDL_KEYDOWN && (event.key.keysym.sym == SDLK_d || event.key.keysym.sym == SDLK_RIGHT))last_key=6;
         }
+        //Initialisation d'un chrono pour les différents déplacements
+        Uint32 now = SDL_GetTicks();
+
         //Rafraîchissement du Labyrinth
         SDL_RenderCopy(renderer, labyrinth_texture, NULL, &labyrinth);
 
@@ -49,9 +57,13 @@ void jouer(){
             map_init = 1;
         }
 
-        move_Pacman(last_key, &posPacmanY, &posPacmanX);
+        //Délai de déplacement de Pacman
+        if(now-lastMovePacman>96){
+            move_Pacman(last_key, &posPacmanY, &posPacmanX);
+            lastMovePacman=now;
+        }
+
         update_map();
         SDL_RenderPresent(renderer);
-        SDL_Delay(64);
     }
 }
