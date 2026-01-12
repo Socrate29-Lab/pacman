@@ -5,7 +5,7 @@
 #include "jeu.h"
 
 //Compile avec :
-//gcc main.c assets.c ecran.c map.c deplacements.c jeu.c tile_generation.c grille.c -o build/pacman $(pkg-config --cflags --libs sdl2)
+//gcc main.c assets.c ecran.c map.c move_pacman.c jeu.c tile_generation.c grille.c -o build/pacman $(pkg-config --cflags --libs sdl2)
 
 int main(int argc, char** argv){
     // Initialisation de SDL
