@@ -34,7 +34,7 @@ void jouer(){
                 if(event.key.keysym.sym == SDLK_ESCAPE)
                 running = 0;
             }
-            //Check des boutons de direction -> "zqsd" du pavé numérique donc "8456"
+            //Check des boutons de direction -> les flèches ou "zqsd" correspondent à "8456" sur le pavé numérique
             if(event.type ==SDL_KEYDOWN && (event.key.keysym.sym == SDLK_z || event.key.keysym.sym == SDLK_UP))last_key=8;
             if(event.type ==SDL_KEYDOWN && (event.key.keysym.sym == SDLK_q || event.key.keysym.sym == SDLK_LEFT))last_key=4;
             if(event.type ==SDL_KEYDOWN && (event.key.keysym.sym == SDLK_s || event.key.keysym.sym == SDLK_DOWN))last_key=5;
