@@ -6,7 +6,7 @@
 void move_Pacman(int last_key,int *posY, int *posX){;
     switch(last_key){
         case 8: //Deplacement vers le haut
-            if(grille_deplacement[*posY - 1][*posX]!=0 && grille_deplacement[*posY - 1][*posX]!=12){
+            if(grille_deplacement[*posY - 1][*posX]!=0){
                 grille_deplacement[*posY][*posX]=1;
                 (*posY)--;
             }
@@ -18,7 +18,7 @@ void move_Pacman(int last_key,int *posY, int *posX){;
                     (*posX)=26;
             }else{
                 //déplacement normal
-                if(grille_deplacement[*posY][*posX - 1]!=0 && grille_deplacement[*posY][*posX - 1]!=12){
+                if(grille_deplacement[*posY][*posX - 1]!=0){
                 grille_deplacement[*posY][*posX]=1;
                 (*posX)--;
                 }
@@ -35,7 +35,7 @@ void move_Pacman(int last_key,int *posY, int *posX){;
                     grille_deplacement[*posY][*posX]=1;
                     (*posX)=1;
             }else{
-                if(grille_deplacement[*posY][*posX + 1]!=0 && grille_deplacement[*posY][*posX + 1]!=12){
+                if(grille_deplacement[*posY][*posX + 1]!=0){
                 grille_deplacement[*posY][*posX]=1;
                 (*posX)++;
                 }

@@ -3,6 +3,7 @@
 #include "ecran.h"
 #include "map.h"
 #include "move_pacman.h"
+#include "move_ghosts.h"
 #include "grille.h"
 
 
@@ -15,8 +16,10 @@ void jouer(){
     int last_key=0;
 
     //Données nécessaires au déplacement
-    int posPacmanY=14;
-    int posPacmanX=1;
+    int posPacmanY=14; int posPacmanX=1;
+    int ghost1Y=14; int ghost1X=13;
+    int ghost2Y=14; int ghost2X=14;
+    int ghost3Y=15; int ghost3X=14;
 
     //Initialisation de deux timers pour les déplacements de Pacman et des fantômes
     Uint32 lastMovePacman = 0;
@@ -58,11 +61,15 @@ void jouer(){
         }
 
         //Délai de déplacement de Pacman
-        if(now-lastMovePacman>96){
+        if(now-lastMovePacman>128){
             move_Pacman(last_key, &posPacmanY, &posPacmanX);
             lastMovePacman=now;
         }
-
+        if(now-lastMoveGhosts>96){
+            move_ghost1(&ghost1Y, &ghost1X);
+            lastMoveGhosts=now;
+        }
+        
         update_map();
         SDL_RenderPresent(renderer);
     }
