@@ -1,6 +1,5 @@
 #include "move_pacman.h"
 #include "grille.h"
-#include "objets.h"
 #include <stdio.h>
 #include <SDL2/SDL.h>
 
