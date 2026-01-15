@@ -14,6 +14,7 @@ void jouer(){
     SDL_Event event;
     int map_init=0;
     int last_key=0;
+    int score = 0;
 
     //Données nécessaires au déplacement
     int posPacmanY=14; int posPacmanX=1;
@@ -62,15 +63,18 @@ void jouer(){
 
         //Délai de déplacement de Pacman
         if(now-lastMovePacman>128){
-            move_Pacman(last_key, &posPacmanY, &posPacmanX);
+            move_Pacman(last_key, &posPacmanY, &posPacmanX, &score, &running);
             lastMovePacman=now;
         }
         if(now-lastMoveGhosts>96){
             move_ghost1(&ghost1Y, &ghost1X);
+            move_ghost2(&ghost2Y, &ghost2X);
+            move_ghost3(&ghost3Y, &ghost3X);
             lastMoveGhosts=now;
         }
         
         update_map();
         SDL_RenderPresent(renderer);
     }
+    printf("Score final : %d", score);
 }

@@ -3,10 +3,11 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 
-void move_Pacman(int last_key,int *posY, int *posX){;
+void move_Pacman(int last_key,int *posY, int *posX, int *score, int *life){;
     switch(last_key){
         case 8: //Deplacement vers le haut
             if(grille_deplacement[*posY - 1][*posX]!=0){
+                if(grille_deplacement[*posY - 1][*posX] == 2) score += 100;
                 grille_deplacement[*posY][*posX]=1;
                 (*posY)--;
             }
@@ -14,11 +15,13 @@ void move_Pacman(int last_key,int *posY, int *posX){;
         case 4: //Deplacement vers la gauche
             //vérification d'un tunnel
             if(grille_deplacement[*posY][*posX - 1]==10){
-                    grille_deplacement[*posY][*posX]=1;
-                    (*posX)=26;
+                if(grille_deplacement[*posY][*posX - 1] == 2) *score += 100;
+                grille_deplacement[*posY][*posX]=1;
+                (*posX)=26;
             }else{
                 //déplacement normal
                 if(grille_deplacement[*posY][*posX - 1]!=0){
+                if(grille_deplacement[*posY][*posX - 1] == 2) *score += 100;
                 grille_deplacement[*posY][*posX]=1;
                 (*posX)--;
                 }
@@ -26,16 +29,19 @@ void move_Pacman(int last_key,int *posY, int *posX){;
             break;
         case 5: //Deplacement vers le bas
             if(grille_deplacement[*posY + 1][*posX]!=0 && grille_deplacement[*posY + 1][*posX]!=12){
+                if(grille_deplacement[*posY + 1][*posX] == 2) *score += 100;
                 grille_deplacement[*posY][*posX]=1;
                 (*posY)++;
             }
             break;
         case 6: //Deplacement vers la droite
             if(grille_deplacement[*posY][*posX + 1]==11){
-                    grille_deplacement[*posY][*posX]=1;
-                    (*posX)=1;
+                if(grille_deplacement[*posY][*posX + 1] == 2) *score += 100;
+                grille_deplacement[*posY][*posX]=1;
+                (*posX)=1;
             }else{
                 if(grille_deplacement[*posY][*posX + 1]!=0){
+                if(grille_deplacement[*posY][*posX + 1] == 2) *score += 100;
                 grille_deplacement[*posY][*posX]=1;
                 (*posX)++;
                 }
