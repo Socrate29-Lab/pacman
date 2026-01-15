@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 
-void move_Pacman(int last_key,int *posY, int *posX, int *score, int *life){;
+void move_Pacman(int last_key,int *posY, int *posX, int *score, int *life, int *eat_ghosts){;
     switch(last_key){
         case 8: //Deplacement vers le haut
             if(grille_deplacement[*posY - 1][*posX]!=0){

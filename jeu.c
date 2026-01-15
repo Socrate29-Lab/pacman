@@ -16,6 +16,7 @@ void jouer(){
     int map_init=0;
     int last_key=0;
     int score = 0;
+    int eat_ghosts = 0;
 
     //Données nécessaires au déplacement
     int posPacmanY=14; int posPacmanX=1;
@@ -70,7 +71,7 @@ void jouer(){
 
         //Délai de déplacement de Pacman
         if(now-lastMovePacman>128){
-            move_Pacman(last_key, &posPacmanY, &posPacmanX, &score, &running);
+            move_Pacman(last_key, &posPacmanY, &posPacmanX, &score, &running, &eat_ghosts);
             lastMovePacman=now;
         }
         if(now-lastMoveGhosts>96){
