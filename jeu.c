@@ -11,6 +11,7 @@
 void jouer(){
     //Données pour permettre au programme de savoir quelle étape il doit faire
     int running = 1;
+    int pause = 0; //Si j'ai le temps de programmer la pause.
     SDL_Event event;
     int map_init=0;
     int last_key=0;
@@ -40,8 +41,14 @@ void jouer(){
             //Conditions de sortie de l'app
             if (event.type == SDL_QUIT) running = 0;
             if (event.type == SDL_KEYDOWN){
-                if(event.key.keysym.sym == SDLK_ESCAPE)
-                running = 0;
+                if(event.key.keysym.sym == SDLK_ESCAPE) running = 0;
+               /*if(event.key.keysym.sym == SDLK_SPACE){
+                    if(pause == 0){ 
+                        pause = 1;
+                    }else{
+                        pause = 0;
+                    }
+                }*/ //Si j'ai le temps de programmer une pause.
             }
             //Check des boutons de direction -> les flèches ou "zqsd" correspondent à "8456" sur le pavé numérique
             if(event.type ==SDL_KEYDOWN && (event.key.keysym.sym == SDLK_z || event.key.keysym.sym == SDLK_UP))last_key=8;
