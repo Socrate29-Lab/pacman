@@ -74,9 +74,9 @@ void jouer(){
             lastMovePacman=now;
         }
         if(now-lastMoveGhosts>96){
-            move_ghost1(&ghost1Y, &ghost1X);
-            move_ghost2(&ghost2Y, &ghost2X);
-            move_ghost3(&ghost3Y, &ghost3X);
+            move_ghost1(&ghost1Y, &ghost1X, &running);
+            move_ghost2(&ghost2Y, &ghost2X, &running);
+            move_ghost3(&ghost3Y, &ghost3X, &running);
             lastMoveGhosts=now;
         }
         
