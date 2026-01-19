@@ -15,8 +15,13 @@ void jouer(){
     int map_init = 0;
     int last_key = 6;
     int score = 0;
+    int empty = 0;
+
+    //Quand pac-gum mangé
     int eat_ghosts = 0;
     int timer_super = 0;
+
+    //Mort et respawn des fantômes
     int life_ghost1 = 1;
     int timer_respawn1 = 0;
     int life_ghost2 = 1;
@@ -112,6 +117,19 @@ void jouer(){
         }
         update_map();
         SDL_RenderPresent(renderer);
+        check_if_empty(&empty);
+        if(check_if_empty(&empty) == 1){
+            for(int i=0; i<31; i++){
+                for(int j=0; j<28; j++){
+                    grille_deplacement[i][j] = grille_init[i][j];
+                }
+            }
+            posPacmanY = 14; posPacmanX = 1;
+            ghost1Y = 14; ghost1X = 13;
+            ghost2Y = 14; ghost2X = 14;
+            ghost3Y = 15; ghost3X = 14;
+            generate_map();
+        }
     }
     printf("Score final : %d", score);
 }

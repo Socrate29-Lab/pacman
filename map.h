@@ -3,6 +3,6 @@
 
 int generate_map();
 int update_map();
-
+int check_if_empty(int *empty);
 
 #endif

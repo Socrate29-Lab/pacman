@@ -3,12 +3,10 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 #include <time.h>
-
 void move_ghost1(int *posY, int *posX, int *pac_life, int *statut, int *ghost_life, int *timer){
     static int direction = 8;
     static int grid_memo = 1;
     int blocked = 0;
-
     //Si le fantôme a besoin de respawn
     if(*ghost_life == 0){
         *posY = 14;
@@ -18,10 +16,8 @@ void move_ghost1(int *posY, int *posX, int *pac_life, int *statut, int *ghost_li
         grille_deplacement[*posY][*posX] = 6;
         return;
     }
-
     int nextY = *posY;
     int nextX = *posX;
-
     //Deplacement vers le haut
     if(direction == 8) nextY--;
     //Deplacement vers la gauche
@@ -30,14 +26,11 @@ void move_ghost1(int *posY, int *posX, int *pac_life, int *statut, int *ghost_li
     else if(direction == 5 && grille_deplacement[*posY + 1][*posX] != 12) nextY++;
     //Deplacement vers la droite
     else if(direction == 6) nextX++;
-
     int next = grille_deplacement[nextY][nextX];
-
     // Collision mur
     if(next == 0){
         blocked = 1;
     } else {
-
         // Collision Pac-Man
         if(next == 5){
             if(*statut == 0) *pac_life = 0;
@@ -46,7 +39,6 @@ void move_ghost1(int *posY, int *posX, int *pac_life, int *statut, int *ghost_li
                 *timer = 200;
             }
         }
-
         // Déplacement normal
         if(*ghost_life == 1){
             grille_deplacement[*posY][*posX] = grid_memo;
@@ -56,18 +48,15 @@ void move_ghost1(int *posY, int *posX, int *pac_life, int *statut, int *ghost_li
             *posX = nextX;
         }
     }
-
     if(blocked)random_direction(&direction);
-
     grille_deplacement[*posY][*posX] =6;
 }
-
 void move_ghost2(int *posY, int *posX, int *pac_life, int *statut, int *ghost_life, int *timer){
      static int direction = 8;
     static int grid_memo = 1;
     int blocked = 0;
-
     //Si le fantôme a besoin de respawn
+
     if(*ghost_life == 0){
         *posY = 14;
         *posX = 14;
@@ -76,10 +65,8 @@ void move_ghost2(int *posY, int *posX, int *pac_life, int *statut, int *ghost_li
         grille_deplacement[*posY][*posX] = 7;
         return;
     }
-
     int nextY = *posY;
     int nextX = *posX;
-
     //Deplacement vers le haut
     if(direction == 8) nextY--;
     //Deplacement vers la gauche
@@ -88,14 +75,11 @@ void move_ghost2(int *posY, int *posX, int *pac_life, int *statut, int *ghost_li
     else if(direction == 5 && grille_deplacement[*posY + 1][*posX] != 12) nextY++;
     //Deplacement vers la droite
     else if(direction == 6) nextX++;
-
     int next = grille_deplacement[nextY][nextX];
-
     // Collision mur
     if(next == 0){
         blocked = 1;
     } else {
-
         // Collision Pac-Man
         if(next == 5){
             if(*statut == 0) *pac_life = 0;
@@ -104,7 +88,6 @@ void move_ghost2(int *posY, int *posX, int *pac_life, int *statut, int *ghost_li
                 *timer = 200;
             }
         }
-
         // Déplacement normal
         if(*ghost_life == 1){
             grille_deplacement[*posY][*posX] = grid_memo;
@@ -114,17 +97,13 @@ void move_ghost2(int *posY, int *posX, int *pac_life, int *statut, int *ghost_li
             *posX = nextX;
         }
     }
-
     if(blocked)random_direction(&direction);
-
     grille_deplacement[*posY][*posX] = 7;
 }
-
 void move_ghost3(int *posY, int *posX, int *pac_life, int *statut, int *ghost_life, int *timer){
     static int direction = 8;
     static int grid_memo = 1;
     int blocked = 0;
-
     //Si le fantôme a besoin de respawn
     if(*ghost_life == 0){
         *posY = 15;
@@ -134,7 +113,6 @@ void move_ghost3(int *posY, int *posX, int *pac_life, int *statut, int *ghost_li
         grille_deplacement[*posY][*posX] = 8;
         return;
     }
-
     int nextY = *posY;
     int nextX = *posX;
 
@@ -146,14 +124,11 @@ void move_ghost3(int *posY, int *posX, int *pac_life, int *statut, int *ghost_li
     else if(direction == 5 && grille_deplacement[*posY + 1][*posX] != 12) nextY++;
     //Deplacement vers la droite
     else if(direction == 6) nextX++;
-
     int next = grille_deplacement[nextY][nextX];
-
     // Collision mur
     if(next == 0){
         blocked = 1;
     } else {
-
         // Collision Pac-Man
         if(next == 5){
             if(*statut == 0) *pac_life = 0;
@@ -162,7 +137,6 @@ void move_ghost3(int *posY, int *posX, int *pac_life, int *statut, int *ghost_li
                 *timer = 200;
             }
         }
-
         // Déplacement normal
         if(*ghost_life == 1){
             grille_deplacement[*posY][*posX] = grid_memo;
@@ -172,13 +146,9 @@ void move_ghost3(int *posY, int *posX, int *pac_life, int *statut, int *ghost_li
             *posX = nextX;
         }
     }
-
     if(blocked)random_direction(&direction);
-
     grille_deplacement[*posY][*posX] = 8;
 }
-
-
 void random_direction(int *direct){
     int d4 = rand()%4;
     switch(d4){
