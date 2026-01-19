@@ -11,12 +11,14 @@
 void jouer(){
     //Données pour permettre au programme de savoir quelle étape il doit faire
     int running = 1;
-    int pause = 0; //Si j'ai le temps de programmer la pause.
     SDL_Event event;
-    int map_init=0;
-    int last_key=0;
+    int map_init = 0;
+    int last_key = 0;
     int score = 0;
     int eat_ghosts = 0;
+    int life_ghost1 = 1;
+    int life_ghost2 = 1;
+    int life_ghost3 = 1;
 
     //Données nécessaires au déplacement
     int posPacmanY=14; int posPacmanX=1;
@@ -41,16 +43,7 @@ void jouer(){
         while(SDL_PollEvent(&event)){
             //Conditions de sortie de l'app
             if (event.type == SDL_QUIT) running = 0;
-            if (event.type == SDL_KEYDOWN){
-                if(event.key.keysym.sym == SDLK_ESCAPE) running = 0;
-               /*if(event.key.keysym.sym == SDLK_SPACE){
-                    if(pause == 0){ 
-                        pause = 1;
-                    }else{
-                        pause = 0;
-                    }
-                }*/ //Si j'ai le temps de programmer une pause.
-            }
+            if (event.type == SDL_KEYDOWN) { if(event.key.keysym.sym == SDLK_ESCAPE) running = 0; }
             //Check des boutons de direction -> les flèches ou "zqsd" correspondent à "8456" sur le pavé numérique
             if(event.type ==SDL_KEYDOWN && (event.key.keysym.sym == SDLK_z || event.key.keysym.sym == SDLK_UP))last_key=8;
             if(event.type ==SDL_KEYDOWN && (event.key.keysym.sym == SDLK_q || event.key.keysym.sym == SDLK_LEFT))last_key=4;
@@ -74,15 +67,16 @@ void jouer(){
             move_Pacman(last_key, &posPacmanY, &posPacmanX, &score, &running, &eat_ghosts);
             lastMovePacman=now;
         }
+        //Délait de déplacement des fantômes
         if(now-lastMoveGhosts>96){
-            move_ghost1(&ghost1Y, &ghost1X, &running);
-            move_ghost2(&ghost2Y, &ghost2X, &running);
-            move_ghost3(&ghost3Y, &ghost3X, &running);
+            move_ghost1(&ghost1Y, &ghost1X, &running, &eat_ghosts);
+            move_ghost2(&ghost2Y, &ghost2X, &running, &eat_ghosts);
+            move_ghost3(&ghost3Y, &ghost3X, &running, &eat_ghosts);
             lastMoveGhosts=now;
         }
-        
         update_map();
         SDL_RenderPresent(renderer);
     }
     printf("Score final : %d", score);
+    printf("\nQuand tu es mort tu étais en statut : %d", eat_ghosts);
 }

@@ -34,7 +34,7 @@ void print_pacgum(int x, int y, SDL_Renderer* renderer){
 //Fonction pour afficher Pac-man
 void print_pacman(int x, int y, SDL_Renderer* renderer){
     SDL_Rect pacman={26*x,28*y,26.5, 26.5};
-    SDL_Surface *pacmanSprite = SDL_LoadBMP("assets/pacman.bmp");
+    SDL_Surface *pacmanSprite = SDL_LoadBMP("assets/pacman_d.bmp");
     if(!pacmanSprite) printf("Erreur chargement pacman.bmp");
     SDL_Texture *pacmanTexture = SDL_CreateTextureFromSurface(renderer, pacmanSprite);
     SDL_FreeSurface(pacmanSprite);

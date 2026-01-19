@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "tile_generation.h"
-#include "objets.h"
 #include "map.h"
 #include "ecran.h"
 #include "assets.h"
