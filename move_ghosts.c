@@ -4,7 +4,7 @@
 #include <SDL2/SDL.h>
 #include <time.h>
 
-void move_ghost1(int *posY, int *posX, int *pac_life, int *statut, int *ghost_life){
+void move_ghost1(int *posY, int *posX, int *pac_life, int *statut, int *ghost_life, int *timer){
     static int direction = 8;
     static int grid_memo = 1;
     int blocked = 0;
@@ -13,10 +13,10 @@ void move_ghost1(int *posY, int *posX, int *pac_life, int *statut, int *ghost_li
     if(*ghost_life == 0){
         *posY = 14;
         *posX = 13;
-        *ghost_life = 1;
         grid_memo = 1;
         direction = 8;
         grille_deplacement[*posY][*posX] = 6;
+        return;
     }
 
     int nextY = *posY;
@@ -41,7 +41,10 @@ void move_ghost1(int *posY, int *posX, int *pac_life, int *statut, int *ghost_li
         // Collision Pac-Man
         if(next == 5){
             if(*statut == 0) *pac_life = 0;
-            else *ghost_life = 0;
+            else{ 
+                *ghost_life = 0;
+                *timer = 200;
+            }
         }
 
         // Déplacement normal
@@ -59,7 +62,7 @@ void move_ghost1(int *posY, int *posX, int *pac_life, int *statut, int *ghost_li
     grille_deplacement[*posY][*posX] =6;
 }
 
-void move_ghost2(int *posY, int *posX, int *pac_life, int *statut, int *ghost_life){
+void move_ghost2(int *posY, int *posX, int *pac_life, int *statut, int *ghost_life, int *timer){
      static int direction = 8;
     static int grid_memo = 1;
     int blocked = 0;
@@ -67,11 +70,11 @@ void move_ghost2(int *posY, int *posX, int *pac_life, int *statut, int *ghost_li
     //Si le fantôme a besoin de respawn
     if(*ghost_life == 0){
         *posY = 14;
-        *posX = 13;
-        *ghost_life = 1;
+        *posX = 14;
         grid_memo = 1;
         direction = 8;
         grille_deplacement[*posY][*posX] = 7;
+        return;
     }
 
     int nextY = *posY;
@@ -96,7 +99,10 @@ void move_ghost2(int *posY, int *posX, int *pac_life, int *statut, int *ghost_li
         // Collision Pac-Man
         if(next == 5){
             if(*statut == 0) *pac_life = 0;
-            else *ghost_life = 0;
+            else{ 
+                *ghost_life = 0;
+                *timer = 200;
+            }
         }
 
         // Déplacement normal
@@ -114,16 +120,15 @@ void move_ghost2(int *posY, int *posX, int *pac_life, int *statut, int *ghost_li
     grille_deplacement[*posY][*posX] = 7;
 }
 
-void move_ghost3(int *posY, int *posX, int *pac_life, int *statut, int *ghost_life){
+void move_ghost3(int *posY, int *posX, int *pac_life, int *statut, int *ghost_life, int *timer){
     static int direction = 8;
     static int grid_memo = 1;
     int blocked = 0;
 
     //Si le fantôme a besoin de respawn
     if(*ghost_life == 0){
-        *posY = 14;
-        *posX = 13;
-        *ghost_life = 1;
+        *posY = 15;
+        *posX = 14;
         grid_memo = 1;
         direction = 8;
         grille_deplacement[*posY][*posX] = 8;
@@ -152,7 +157,10 @@ void move_ghost3(int *posY, int *posX, int *pac_life, int *statut, int *ghost_li
         // Collision Pac-Man
         if(next == 5){
             if(*statut == 0) *pac_life = 0;
-            else *ghost_life = 0;
+            else{ 
+                *ghost_life = 0;
+                *timer = 200;
+            }
         }
 
         // Déplacement normal

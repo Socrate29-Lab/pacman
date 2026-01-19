@@ -13,12 +13,16 @@ void jouer(){
     int running = 1;
     SDL_Event event;
     int map_init = 0;
-    int last_key = 0;
+    int last_key = 6;
     int score = 0;
     int eat_ghosts = 0;
+    int timer_super = 0;
     int life_ghost1 = 1;
+    int timer_respawn1 = 0;
     int life_ghost2 = 1;
+    int timer_respawn2 = 0;
     int life_ghost3 = 1;
+    int timer_respawn3 = 0;
 
     //Données nécessaires au déplacement
     int posPacmanY=14; int posPacmanX=1;
@@ -64,15 +68,47 @@ void jouer(){
 
         //Délai de déplacement de Pacman
         if(now-lastMovePacman>128){
-            move_Pacman(last_key, &posPacmanY, &posPacmanX, &score, &running, &eat_ghosts);
+            move_Pacman(last_key, &posPacmanY, &posPacmanX, &score, &running, &eat_ghosts, &timer_super, &life_ghost1, &life_ghost2, &life_ghost3);
             lastMovePacman=now;
         }
-        //Délait de déplacement des fantômes
+        //Délai de déplacement des fantômes
         if(now-lastMoveGhosts>96){
-            move_ghost1(&ghost1Y, &ghost1X, &running, &eat_ghosts, &life_ghost1);
-            move_ghost2(&ghost2Y, &ghost2X, &running, &eat_ghosts, &life_ghost2);
-            move_ghost3(&ghost3Y, &ghost3X, &running, &eat_ghosts, &life_ghost3);
+            move_ghost1(&ghost1Y, &ghost1X, &running, &eat_ghosts, &life_ghost1, &timer_respawn1);
+            move_ghost2(&ghost2Y, &ghost2X, &running, &eat_ghosts, &life_ghost2, &timer_respawn2);
+            move_ghost3(&ghost3Y, &ghost3X, &running, &eat_ghosts, &life_ghost3, &timer_respawn3);
             lastMoveGhosts=now;
+        }
+        //Timer pour le mode super de Pacman
+        if(eat_ghosts == 1){
+            timer_super --;
+            if(timer_super <= 0){
+                eat_ghosts = 0;
+                timer_super = 0;
+            }
+        }
+        //Check respawn fantome 1
+        if(life_ghost1 == 0){
+            timer_respawn1 --;
+            if(timer_respawn1 <= 0){
+                life_ghost1 = 1;
+                timer_respawn1 = 0;
+            }
+        }
+        //Check respawn fantome 2
+        if(life_ghost2 == 0){
+            timer_respawn2 --;
+            if(timer_respawn2 <= 0){
+                life_ghost2 = 1;
+                timer_respawn2 = 0;
+            }
+        }
+        //Check respawn fantome 3
+        if(life_ghost3 == 0){
+            timer_respawn3 --;
+            if(timer_respawn3 <= 0){
+                life_ghost3 = 1;
+                timer_respawn3 = 0;
+            }
         }
         update_map();
         SDL_RenderPresent(renderer);

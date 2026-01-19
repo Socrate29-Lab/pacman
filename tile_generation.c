@@ -34,19 +34,5 @@ void generate_tile(int x, int y, int a){
         case 8:
             print_ghost3(y,x,renderer);
             break;
-        /*case 9:
-            printf("G");
-            break;
-        case 10:
-            printf("=");
-            break;
-        case 11:
-            printf("=");
-            break;
-        case 12:
-            printf("_");
-            break;
-        default :
-            break;*/
     }
 }
