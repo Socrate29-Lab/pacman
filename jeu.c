@@ -69,14 +69,13 @@ void jouer(){
         }
         //Délait de déplacement des fantômes
         if(now-lastMoveGhosts>96){
-            move_ghost1(&ghost1Y, &ghost1X, &running, &eat_ghosts);
-            move_ghost2(&ghost2Y, &ghost2X, &running, &eat_ghosts);
-            move_ghost3(&ghost3Y, &ghost3X, &running, &eat_ghosts);
+            move_ghost1(&ghost1Y, &ghost1X, &running, &eat_ghosts, &life_ghost1);
+            move_ghost2(&ghost2Y, &ghost2X, &running, &eat_ghosts, &life_ghost2);
+            move_ghost3(&ghost3Y, &ghost3X, &running, &eat_ghosts, &life_ghost3);
             lastMoveGhosts=now;
         }
         update_map();
         SDL_RenderPresent(renderer);
     }
     printf("Score final : %d", score);
-    printf("\nQuand tu es mort tu étais en statut : %d", eat_ghosts);
 }
