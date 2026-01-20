@@ -8,13 +8,13 @@
 
 
 //Initialisation du jeu
-void jouer(){
+int jouer(int *score){
     //Données pour permettre au programme de savoir quelle étape il doit faire
     int running = 1;
     SDL_Event event;
     int map_init = 0;
     int last_key = 6;
-    int score = 0;
+    *score = 0;
     int empty = 0;
 
     //Quand pac-gum mangé
@@ -73,7 +73,7 @@ void jouer(){
 
         //Délai de déplacement de Pacman
         if(now-lastMovePacman>128){
-            move_Pacman(last_key, &posPacmanY, &posPacmanX, &score, &running, &eat_ghosts, &timer_super, &life_ghost1, &life_ghost2, &life_ghost3);
+            move_Pacman(last_key, &posPacmanY, &posPacmanX, &*score, &running, &eat_ghosts, &timer_super, &life_ghost1, &life_ghost2, &life_ghost3);
             lastMovePacman=now;
         }
         //Délai de déplacement des fantômes
@@ -131,5 +131,6 @@ void jouer(){
             generate_map();
         }
     }
-    printf("Score final : %d", score);
+    printf("Score final : %d", *score);
+    return *score;
 }

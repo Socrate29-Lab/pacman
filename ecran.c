@@ -2,6 +2,7 @@
 #include "ecran.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 
 //Déclaration de l'écran
 SDL_Window *screen = NULL;
@@ -30,6 +31,7 @@ int init_ecran(const char *titre, int largeur, int hauteur){
 
 //Nettoyage de l'ecran
 void detruire_ecran(){
+    TTF_Quit();
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(screen);
     SDL_Quit();

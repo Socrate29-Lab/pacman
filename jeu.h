@@ -1,6 +1,6 @@
 #ifndef JEU_H
 #define JEU_H
 
-void jouer();
+int jouer(int *score);
 
 #endif
