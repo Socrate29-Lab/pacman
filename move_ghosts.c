@@ -4,7 +4,8 @@
 #include <SDL2/SDL.h>
 #include <time.h>
 void move_ghost1(int *posY, int *posX, int *pac_life, int *statut, int *ghost_life, int *timer){
-    static int direction = 8;
+    static int direction;
+    if(*posY == 14 && *posX == 13) direction = 8;
     static int grid_memo = 1;
     int blocked = 0;
     //Si le fantôme a besoin de respawn
@@ -52,7 +53,8 @@ void move_ghost1(int *posY, int *posX, int *pac_life, int *statut, int *ghost_li
     grille_deplacement[*posY][*posX] =6;
 }
 void move_ghost2(int *posY, int *posX, int *pac_life, int *statut, int *ghost_life, int *timer){
-     static int direction = 8;
+    static int direction;
+    if(*posY == 14 && *posX == 14) direction = 8;
     static int grid_memo = 1;
     int blocked = 0;
     //Si le fantôme a besoin de respawn
@@ -101,7 +103,8 @@ void move_ghost2(int *posY, int *posX, int *pac_life, int *statut, int *ghost_li
     grille_deplacement[*posY][*posX] = 7;
 }
 void move_ghost3(int *posY, int *posX, int *pac_life, int *statut, int *ghost_life, int *timer){
-    static int direction = 8;
+    static int direction;
+    if(*posY == 15 && *posX == 14) direction = 8;
     static int grid_memo = 1;
     int blocked = 0;
     //Si le fantôme a besoin de respawn
