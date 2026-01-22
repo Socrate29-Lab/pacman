@@ -5,7 +5,7 @@
 #include "move_pacman.h"
 #include "move_ghosts.h"
 #include "grille.h"
-
+#include <SDL2/SDL_ttf.h>
 
 //Initialisation du jeu
 int jouer(int *score){
@@ -38,6 +38,12 @@ int jouer(int *score){
     //Initialisation de deux timers pour les déplacements de Pacman et des fantômes
     Uint32 lastMovePacman = 0;
     Uint32 lastMoveGhosts = 0;
+
+    //Chargement de la police d'écriture
+    TTF_Font *sixtyfour = TTF_OpenFont("assets/Sixtyfour.ttf", 48);
+    if (!sixtyfour) {
+    printf("Erreur TTF_OpenFont : %s\n", TTF_GetError());
+    }
 
     //Affichage du labyrinthe
     SDL_Rect labyrinth={0,0,728,852};
@@ -116,7 +122,6 @@ int jouer(int *score){
             }
         }
         update_map();
-        SDL_RenderPresent(renderer);
         check_if_empty(&empty);
         if(check_if_empty(&empty) == 1){
             for(int i=0; i<31; i++){
@@ -130,6 +135,7 @@ int jouer(int *score){
             ghost3Y = 15; ghost3X = 14;
             generate_map();
         }
+        SDL_RenderPresent(renderer);
     }
     printf("Score final : %d", *score);
     return *score;

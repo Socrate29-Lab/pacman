@@ -26,9 +26,8 @@ int main(int argc, char** argv){
     //initialisation du TTF pour afficher du texte
     if(TTF_Init()==-1){
         printf("TTF_Init : %s\n", TTF_GetError());
-        exit(2);
     }
-
+    
     //Initialisation de l'ecran
     init_ecran("Pacman", 728, 852);
 

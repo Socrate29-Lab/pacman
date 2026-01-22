@@ -52,6 +52,7 @@ void move_ghost1(int *posY, int *posX, int *pac_life, int *statut, int *ghost_li
     if(blocked)random_direction(&direction);
     grille_deplacement[*posY][*posX] =6;
 }
+
 void move_ghost2(int *posY, int *posX, int *pac_life, int *statut, int *ghost_life, int *timer){
     static int direction;
     if(*posY == 14 && *posX == 14) direction = 8;
@@ -102,6 +103,7 @@ void move_ghost2(int *posY, int *posX, int *pac_life, int *statut, int *ghost_li
     if(blocked)random_direction(&direction);
     grille_deplacement[*posY][*posX] = 7;
 }
+
 void move_ghost3(int *posY, int *posX, int *pac_life, int *statut, int *ghost_life, int *timer){
     static int direction;
     if(*posY == 15 && *posX == 14) direction = 8;
@@ -152,6 +154,7 @@ void move_ghost3(int *posY, int *posX, int *pac_life, int *statut, int *ghost_li
     if(blocked)random_direction(&direction);
     grille_deplacement[*posY][*posX] = 8;
 }
+
 void random_direction(int *direct){
     int d4 = rand()%4;
     switch(d4){
