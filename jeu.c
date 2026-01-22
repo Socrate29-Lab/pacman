@@ -21,17 +21,19 @@ int jouer(int *score){
     int eat_ghosts = 0;
     int timer_super = 0;
     Uint32 super_start_time = 0;
-    const int SUPER_DUREE = 5000; //(pour 5 secondes)
+    const int SUPER_DUREE = 7000; //(pour 7 secondes)
     char timer_super_text[64];
-    sprintf(timer_super_text, "Super : %d", timer_super);
+    int last_timer_super = -1;
+
 
     //Mort et respawn des fantômes
     int life_ghost1 = 1;
-    int timer_respawn1 = 0;
+    Uint32 timer_respawn1 = 0;
     int life_ghost2 = 1;
-    int timer_respawn2 = 0;
+    Uint32 timer_respawn2 = 0;
     int life_ghost3 = 1;
-    int timer_respawn3 = 0;
+    Uint32 timer_respawn3 = 0;
+    const int DUREE_RESPAWN = 5000;
 
     //Données nécessaires au déplacement
     int posPacmanY=14; int posPacmanX=1;
@@ -57,7 +59,7 @@ int jouer(int *score){
     //Rectangle pour afficher le texte
     SDL_Rect timer_rect;
     TTF_SizeUTF8(sixtyfour, timer_super_text, &timer_rect.w, &timer_rect.h);
-    timer_rect.x = 26;
+    timer_rect.x = 0;
     timer_rect.y = 280;
 
     //Affichage du labyrinthe
@@ -94,12 +96,20 @@ int jouer(int *score){
 
         //Délai de déplacement de Pacman
         if(now-lastMovePacman>128){
-            move_Pacman(last_key, &posPacmanY, &posPacmanX, &*score, &running, &eat_ghosts, &super_start_time, &life_ghost1, &life_ghost2, &life_ghost3);
+            move_Pacman(last_key, &posPacmanY, &posPacmanX, &*score, &running, &eat_ghosts, &super_start_time, &life_ghost1, &life_ghost2, &life_ghost3, &timer_respawn1, &timer_respawn2, &timer_respawn3);
             lastMovePacman=now;
         }
 
         //Check si le timer a été mis a jour pour l'afficher à l'ecran
-        sprintf(timer_super_text, "Super : %d", timer_super);
+        if(timer_super != last_timer_super){
+            last_timer_super = timer_super;
+            sprintf(timer_super_text, "Super : %d", timer_super);
+            SDL_DestroyTexture(timer_texture);
+            SDL_Surface *timer_surface = TTF_RenderUTF8_Blended(sixtyfour, timer_super_text, yellow);
+            timer_texture = SDL_CreateTextureFromSurface(renderer, timer_surface);
+            SDL_FreeSurface(timer_surface);
+            TTF_SizeUTF8(sixtyfour, timer_super_text, &timer_rect.w, &timer_rect.h);
+        }
 
         //Délai de déplacement des fantômes
         if(now-lastMoveGhosts>96){
@@ -122,29 +132,37 @@ int jouer(int *score){
         
         //Check respawn fantome 1
         if(life_ghost1 == 0){
-            timer_respawn1 --;
-            if(timer_respawn1 <= 0){
+            Uint32 tempsPassé = SDL_GetTicks() - timer_respawn1;
+            int tempsRestant = (DUREE_RESPAWN - tempsPassé);
+
+            if(tempsPassé >= DUREE_RESPAWN){
                 life_ghost1 = 1;
                 timer_respawn1 = 0;
             }
         }
+
         //Check respawn fantome 2
         if(life_ghost2 == 0){
-            timer_respawn2 --;
-            if(timer_respawn2 <= 0){
+            Uint32 tempsPassé = SDL_GetTicks() - timer_respawn2;
+            int tempsRestant = (DUREE_RESPAWN - tempsPassé);
+
+            if(tempsPassé >= DUREE_RESPAWN){
                 life_ghost2 = 1;
                 timer_respawn2 = 0;
             }
         }
         //Check respawn fantome 3
         if(life_ghost3 == 0){
-            timer_respawn3 --;
-            if(timer_respawn3 <= 0){
+            Uint32 tempsPassé = SDL_GetTicks() - timer_respawn3;
+            int tempsRestant = (DUREE_RESPAWN - tempsPassé);
+
+            if(tempsPassé >= DUREE_RESPAWN){
                 life_ghost3 = 1;
                 timer_respawn3 = 0;
             }
         }
         update_map();
+        //Regarde si la map est vide. Si oui, réinitialise la map pour continuer à monter le score
         check_if_empty(&empty);
         if(check_if_empty(&empty) == 1){
             for(int i=0; i<31; i++){

@@ -3,11 +3,18 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 #include <time.h>
+
 void move_ghost1(int *posY, int *posX, int *pac_life, int *statut, int *ghost_life, int *timer){
     static int direction;
-    if(*posY == 14 && *posX == 13) direction = 8;
+    static int leaving_spawn = 1;
+    //Permet de check si le fantome sort du spawn lorsqu'on initialise puis réinitialise la carte
+    if (leaving_spawn && *posY == 14 && *posX == 13) {
+    direction = 8;
+    leaving_spawn = 0;
+    }
     static int grid_memo = 1;
     int blocked = 0;
+
     //Si le fantôme a besoin de respawn
     if(*ghost_life == 0){
         *posY = 14;
@@ -37,7 +44,7 @@ void move_ghost1(int *posY, int *posX, int *pac_life, int *statut, int *ghost_li
             if(*statut == 0) *pac_life = 0;
             else{ 
                 *ghost_life = 0;
-                *timer = 200;
+                *timer = SDL_GetTicks();
             }
         }
         // Déplacement normal
@@ -49,17 +56,24 @@ void move_ghost1(int *posY, int *posX, int *pac_life, int *statut, int *ghost_li
             *posX = nextX;
         }
     }
-    if(blocked)random_direction(&direction);
+    if(blocked){
+        random_direction(&direction);
+        return;
+    }
     grille_deplacement[*posY][*posX] =6;
 }
 
 void move_ghost2(int *posY, int *posX, int *pac_life, int *statut, int *ghost_life, int *timer){
     static int direction;
-    if(*posY == 14 && *posX == 14) direction = 8;
+    static int leaving_spawn = 1;
+    if (leaving_spawn && *posY == 14 && *posX == 14) {
+    direction = 8;
+    leaving_spawn = 0;
+    }
     static int grid_memo = 1;
     int blocked = 0;
-    //Si le fantôme a besoin de respawn
 
+    //Si le fantôme a besoin de respawn
     if(*ghost_life == 0){
         *posY = 14;
         *posX = 14;
@@ -88,7 +102,7 @@ void move_ghost2(int *posY, int *posX, int *pac_life, int *statut, int *ghost_li
             if(*statut == 0) *pac_life = 0;
             else{ 
                 *ghost_life = 0;
-                *timer = 200;
+                *timer = SDL_GetTicks();
             }
         }
         // Déplacement normal
@@ -100,15 +114,23 @@ void move_ghost2(int *posY, int *posX, int *pac_life, int *statut, int *ghost_li
             *posX = nextX;
         }
     }
-    if(blocked)random_direction(&direction);
+    if(blocked){
+        random_direction(&direction);
+        return;
+    }
     grille_deplacement[*posY][*posX] = 7;
 }
 
 void move_ghost3(int *posY, int *posX, int *pac_life, int *statut, int *ghost_life, int *timer){
     static int direction;
-    if(*posY == 15 && *posX == 14) direction = 8;
+    static int leaving_spawn = 1;
+    if (leaving_spawn && *posY == 15 && *posX == 14) {
+    direction = 8;
+    leaving_spawn = 0;
+    }
     static int grid_memo = 1;
     int blocked = 0;
+
     //Si le fantôme a besoin de respawn
     if(*ghost_life == 0){
         *posY = 15;
@@ -139,7 +161,7 @@ void move_ghost3(int *posY, int *posX, int *pac_life, int *statut, int *ghost_li
             if(*statut == 0) *pac_life = 0;
             else{ 
                 *ghost_life = 0;
-                *timer = 200;
+                *timer = SDL_GetTicks();
             }
         }
         // Déplacement normal
@@ -151,7 +173,10 @@ void move_ghost3(int *posY, int *posX, int *pac_life, int *statut, int *ghost_li
             *posX = nextX;
         }
     }
-    if(blocked)random_direction(&direction);
+    if(blocked){
+        random_direction(&direction);
+        return;
+    }
     grille_deplacement[*posY][*posX] = 8;
 }
 
