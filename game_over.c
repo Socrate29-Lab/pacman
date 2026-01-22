@@ -22,10 +22,10 @@ int game_over_screen(int *score){
     SDL_FreeSurface(labyrinth_surface);
     if(!labyrinth_texture) printf("Erreur texture");
     
-    //Rectangle d'affichage du texte
+    //Rectangle d'affichage du fondu au noir
     SDL_Rect game_over = {0,0,728,852};
 
-    //Ecriture du game over et du score
+    //Couleurs du game over et du score
     SDL_Color white = {255, 255, 255, 255};
     SDL_Color yellow = {255, 255, 0, 255};
 
@@ -69,9 +69,6 @@ int game_over_screen(int *score){
             //Conditions de sortie de l'app
             if (event.type == SDL_QUIT) running = 0;
             if (event.type == SDL_KEYDOWN) { if(event.key.keysym.sym == SDLK_ESCAPE) running = 0; }
-            //Check des boutons de direction -> les flèches ou "zqsd" correspondent à "8456" sur le pavé numérique
-            if(event.type ==SDL_KEYDOWN && (event.key.keysym.sym == SDLK_z || event.key.keysym.sym == SDLK_UP))last_key=8;
-            if(event.type ==SDL_KEYDOWN && (event.key.keysym.sym == SDLK_s || event.key.keysym.sym == SDLK_DOWN))last_key=5;
         }
 
         // Activer le blending alpha (pour l'opacité de la couleur)
@@ -91,4 +88,6 @@ int game_over_screen(int *score){
         SDL_RenderPresent(renderer);
     }
     SDL_DestroyTexture(game_over_texture);
+    SDL_DestroyTexture(score_texture);
+    TTF_CloseFont(sixtyfour);
 }

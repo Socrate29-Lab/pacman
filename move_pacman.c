@@ -25,7 +25,7 @@ int next_move = grille_deplacement[nextY][nextX];
 //Check si rencontre de pac-gum
 if(next_move == 3){
     *statut = 1;
-    *timer_super = 350;
+    *timer_super = SDL_GetTicks();
 }
 
 //Check les deux cas de rencontre de fantôme : pac-gum actif ou non

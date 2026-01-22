@@ -20,6 +20,10 @@ int jouer(int *score){
     //Quand pac-gum mangé
     int eat_ghosts = 0;
     int timer_super = 0;
+    Uint32 super_start_time = 0;
+    const int SUPER_DUREE = 5000; //(pour 5 secondes)
+    char timer_super_text[64];
+    sprintf(timer_super_text, "Super : %d", timer_super);
 
     //Mort et respawn des fantômes
     int life_ghost1 = 1;
@@ -40,10 +44,21 @@ int jouer(int *score){
     Uint32 lastMoveGhosts = 0;
 
     //Chargement de la police d'écriture
-    TTF_Font *sixtyfour = TTF_OpenFont("assets/Sixtyfour.ttf", 48);
+    TTF_Font *sixtyfour = TTF_OpenFont("assets/Sixtyfour.ttf",12);
     if (!sixtyfour) {
     printf("Erreur TTF_OpenFont : %s\n", TTF_GetError());
     }
+    SDL_Color yellow = {255, 255, 0, 255};
+    SDL_Color white = {0,0,0,255};
+    //Surface de texte
+    SDL_Surface *timer_surface = TTF_RenderUTF8_Blended(sixtyfour, timer_super_text, yellow);
+    SDL_Texture *timer_texture = SDL_CreateTextureFromSurface(renderer, timer_surface);
+    SDL_FreeSurface(timer_surface);
+    //Rectangle pour afficher le texte
+    SDL_Rect timer_rect;
+    TTF_SizeUTF8(sixtyfour, timer_super_text, &timer_rect.w, &timer_rect.h);
+    timer_rect.x = 26;
+    timer_rect.y = 280;
 
     //Affichage du labyrinthe
     SDL_Rect labyrinth={0,0,728,852};
@@ -79,9 +94,13 @@ int jouer(int *score){
 
         //Délai de déplacement de Pacman
         if(now-lastMovePacman>128){
-            move_Pacman(last_key, &posPacmanY, &posPacmanX, &*score, &running, &eat_ghosts, &timer_super, &life_ghost1, &life_ghost2, &life_ghost3);
+            move_Pacman(last_key, &posPacmanY, &posPacmanX, &*score, &running, &eat_ghosts, &super_start_time, &life_ghost1, &life_ghost2, &life_ghost3);
             lastMovePacman=now;
         }
+
+        //Check si le timer a été mis a jour pour l'afficher à l'ecran
+        sprintf(timer_super_text, "Super : %d", timer_super);
+
         //Délai de déplacement des fantômes
         if(now-lastMoveGhosts>96){
             move_ghost1(&ghost1Y, &ghost1X, &running, &eat_ghosts, &life_ghost1, &timer_respawn1);
@@ -91,12 +110,16 @@ int jouer(int *score){
         }
         //Timer pour le mode super de Pacman
         if(eat_ghosts == 1){
-            timer_super --;
-            if(timer_super <= 0){
+            Uint32 tempsPassé = SDL_GetTicks() - super_start_time;
+            int tempsRestant = (SUPER_DUREE - tempsPassé) / 1000;
+            
+            if(tempsRestant <= 0){
                 eat_ghosts = 0;
-                timer_super = 0;
+                tempsRestant;
             }
+            timer_super = tempsRestant;
         }
+        
         //Check respawn fantome 1
         if(life_ghost1 == 0){
             timer_respawn1 --;
@@ -135,8 +158,10 @@ int jouer(int *score){
             ghost3Y = 15; ghost3X = 14;
             generate_map();
         }
+        SDL_RenderCopy(renderer, timer_texture, NULL, &timer_rect);
         SDL_RenderPresent(renderer);
     }
-    printf("Score final : %d", *score);
     return *score;
+    SDL_DestroyTexture(timer_texture);
+    TTF_CloseFont(sixtyfour);
 }
