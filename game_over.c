@@ -87,6 +87,7 @@ int game_over_screen(int *score){
         
         SDL_RenderPresent(renderer);
     }
+    SDL_DestroyTexture(labyrinth_texture);
     SDL_DestroyTexture(game_over_texture);
     SDL_DestroyTexture(score_texture);
     TTF_CloseFont(sixtyfour);

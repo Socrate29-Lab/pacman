@@ -181,5 +181,6 @@ int jouer(int *score){
     }
     return *score;
     SDL_DestroyTexture(timer_texture);
+    SDL_DestroyTexture(labyrinth_texture);
     TTF_CloseFont(sixtyfour);
 }

@@ -18,6 +18,7 @@ void print_candy(int x, int y, SDL_Renderer *renderer){
     SDL_FreeSurface(candySprite);
     if(!candyTexture) printf("Erreur texture");
     SDL_RenderCopy(renderer, candyTexture, NULL, &candy);
+    SDL_DestroyTexture(candyTexture);
 }
 
 //Fonction pour afficher les pac-gum
@@ -29,6 +30,7 @@ void print_pacgum(int x, int y, SDL_Renderer* renderer){
     SDL_FreeSurface(pac_gumSprite);
     if(!pac_gumTexture) printf("Erreur texture");
     SDL_RenderCopy(renderer, pac_gumTexture, NULL, &pac_gum);
+    SDL_DestroyTexture(pac_gumTexture);
 }
 
 //Fonction pour afficher Pac-man
@@ -40,6 +42,7 @@ void print_pacman(int x, int y, SDL_Renderer* renderer){
     SDL_FreeSurface(pacmanSprite);
     if(!pacmanTexture) printf("Erreur texture");
     SDL_RenderCopy(renderer, pacmanTexture, NULL, &pacman);
+    SDL_DestroyTexture(pacmanTexture);
 }
 
 //Fonction pour afficher le fantôme vert
@@ -51,6 +54,7 @@ void print_ghost1(int x, int y, SDL_Renderer* renderer){
     SDL_FreeSurface(ghost1Sprite);
     if(!ghost1Texture) printf("Erreur texture");
     SDL_RenderCopy(renderer, ghost1Texture, NULL, &ghost1);
+    SDL_DestroyTexture(ghost1Texture);
 }
 
 //Fonction pour afficher le fantôme bleu
@@ -62,6 +66,7 @@ void print_ghost2(int x, int y, SDL_Renderer* renderer){
     SDL_FreeSurface(ghost2Sprite);
     if(!ghost2Texture) printf("Erreur texture");
     SDL_RenderCopy(renderer, ghost2Texture, NULL, &ghost2);
+    SDL_DestroyTexture(ghost2Texture);
 }
 
 //Fonction pour afficher le fantôme rose
@@ -73,4 +78,5 @@ void print_ghost3(int x, int y, SDL_Renderer* renderer){
     SDL_FreeSurface(ghost3Sprite);
     if(!ghost3Texture) printf("Erreur texture");
     SDL_RenderCopy(renderer, ghost3Texture, NULL, &ghost3);
+    SDL_DestroyTexture(ghost3Texture);
 }
