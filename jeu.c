@@ -48,7 +48,7 @@ int jouer(int *score){
     //Chargement de la police d'écriture
     TTF_Font *sixtyfour = TTF_OpenFont("assets/Sixtyfour.ttf",12);
     if (!sixtyfour) {
-    printf("Erreur TTF_OpenFont : %s\n", TTF_GetError());
+        printf("Erreur TTF_OpenFont : %s\n", TTF_GetError());
     }
     SDL_Color yellow = {255, 255, 0, 255};
     SDL_Color white = {0,0,0,255};
@@ -179,8 +179,8 @@ int jouer(int *score){
         SDL_RenderCopy(renderer, timer_texture, NULL, &timer_rect);
         SDL_RenderPresent(renderer);
     }
-    return *score;
     SDL_DestroyTexture(timer_texture);
     SDL_DestroyTexture(labyrinth_texture);
     TTF_CloseFont(sixtyfour);
+    return *score;
 }
