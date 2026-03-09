@@ -27,6 +27,7 @@ int init_ecran(const char *titre, int largeur, int hauteur){
         SDL_DestroyWindow(screen);
         SDL_Quit();
     } 
+    return 0;
 }
 
 //Nettoyage de l'ecran
